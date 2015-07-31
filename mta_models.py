@@ -22,10 +22,10 @@ class mta_stop(Base):
 	stop_code = Column(String(5))
 	stop_name = Column(String(255))
 	stop_desc = Column(String(255))
-	stop_lat = Column(float)
-	stop_lon = Column(float)
-	zone_id = Column(String(255)),
-	stop_url = Column(String(255)),
+	stop_lat = Column(Float)
+	stop_lon = Column(Float)
+	zone_id = Column(String(255))
+	stop_url = Column(String(255))
 	location_type  = Column(String(255))
 	parent_station  = Column(String(255))
 
@@ -74,13 +74,13 @@ class mta_calendar(Base):
 	__tablename__ = "mta_calendar"
 	x_id = Column(Integer, primary_key=True, nullable=False)
 	service_id = Column(String(255))
-	monday = Column(tinyint)
-	tuesday = Column(tinyint)
-	wednesday = Column(tinyint)
-	thursday = Column(tinyint)
-	friday = Column(tinyint)
-	saturday = Column(tinyint)
-	sunday = Column(tinyint)
+	monday = Column(SmallInteger)
+	tuesday = Column(SmallInteger)
+	wednesday = Column(SmallInteger)
+	thursday = Column(SmallInteger)
+	friday = Column(SmallInteger)
+	saturday = Column(SmallInteger)
+	sunday = Column(SmallInteger)
 	start_date = Column(String(25))
 	end_date = Column(String(25))
 
@@ -108,5 +108,5 @@ class mta_transfer(Base):
 	x_id = Column(Integer, primary_key=True, nullable=False)
 	from_stop_id = Column(String(5))
 	to_stop_id = Column(String(5))
-	transfer_type = Column(int)
-	min_transfer_time = Column(int)
+	transfer_type = Column(Integer)
+	min_transfer_time = Column(Integer)
