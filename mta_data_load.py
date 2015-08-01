@@ -16,7 +16,6 @@ def Load_Data(file_name):
 		next(rows, None) 
 		for row in rows:
 			formatted.append(row)
-		
 		return formatted
 
 
@@ -40,6 +39,7 @@ s = session()
 
 
 #begin of agency import
+print "begin agency import"
 try:
 	agency_file_name = read_dir + '/agency.txt'
 	agency_list = Load_Data(agency_file_name)
@@ -51,34 +51,41 @@ try:
 		record.agency_timezone=i[3]
 		record.agency_lang=i[4]
 		record.agency_phone=i[5]
-		
-	s.add(record) #Add all the records
-	s.commit() #Attempt to commit all the records
-except:
-	print "agency insert exception rollback called "
-	s.rollback() #Rollback the changes on error
-finally:
-	print "agency imported"
-	s.close() #Close the connection
+		s.add(record) #Add all the records
+		s.commit() #Attempt to commit all the records
 
-#begin of agency import
-try:
-	agency_file_name = read_dir + '/agency.txt'
-	agency_list = Load_Data(agency_file_name)
-	for i in agency_list:
-		record = mta_agency()
-		record.agency_id=i[0]
-		record.agency_name=i[1]
-		record.agency_url=i[2]
-		record.agency_timezone=i[3]
-		record.agency_lang=i[4]
-		record.agency_phone=i[5]
-		
-	s.add(record) #Add all the records
-	s.commit() #Attempt to commit all the records
 except:
-	print "agency insert exception rollback called "
-	s.rollback() #Rollback the changes on error
+	print "agency import exception rollback called "
+	#s.rollback() #Rollback the changes on error
 finally:
 	print "agency imported"
-	s.close() #Close the connection
+	#s.close() #Close the connection
+
+#begin of STOPS import
+print "begin stops import"
+try:
+	stops_file_name = read_dir + '/stops.txt'
+	stops_list = Load_Data(stops_file_name)
+
+	for i in stops_list:
+		record = mta_stop()
+		record.stop_id=i[0]
+		record.stop_code=i[1]
+		record.stop_name=i[2]
+		record.stop_desc=i[3]
+		record.stop_lat=i[4]
+		record.stop_lon=i[5]
+		record.zone_id=i[6]
+		record.stop_url=i[7]
+		record.location_type =i[8]
+		record.parent_station = i[9]
+		s.add(record) #Add all the records
+		s.commit() #Attempt to commit all the records
+
+except:
+	print "stops import exception rollback called "
+	#s.rollback() #Rollback the changes on error
+finally:
+	print "stops imported"
+	#s.close() #Close the connection
+
