@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class mta_agency(Base):
 	__tablename__ = "mta_agencies"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	agency_id = Column(String(255))
 	agency_name = Column(String(255))
 	agency_url =  Column(String(255))
@@ -17,7 +17,7 @@ class mta_agency(Base):
 
 class mta_stop(Base):
 	__tablename__ = "mta_stops"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	stop_id  = Column(String(5))
 	stop_code = Column(String(5))
 	stop_name = Column(String(255))
@@ -32,7 +32,7 @@ class mta_stop(Base):
 
 class mta_route(Base):
 	__tablename__ = "mta_routes"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	route_id  = Column(String(5))
 	agency_id = Column(String(5))
 	route_short_name = Column(String(255))
@@ -46,7 +46,7 @@ class mta_route(Base):
 
 class mta_trip(Base):
 	__tablename__ = "mta_trips"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	route_id  = Column(String(5))
 	service_id = Column(String(255))
 	trip_id = Column(String(255))
@@ -58,7 +58,7 @@ class mta_trip(Base):
 
 class mta_stop_time(Base):
 	__tablename__ = "mta_stop_times"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	trip_id = Column(String(5))
 	arrival_time = Column(String(10))
 	departure_time =  Column(String(10))
@@ -72,7 +72,7 @@ class mta_stop_time(Base):
 
 class mta_calendar(Base):
 	__tablename__ = "mta_calendar"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	service_id = Column(String(255))
 	monday = Column(SmallInteger)
 	tuesday = Column(SmallInteger)
@@ -87,7 +87,7 @@ class mta_calendar(Base):
 
 class mta_calendar_date(Base):
 	__tablename__ = "mta_calendar_dates"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	service_id = Column(String(255))
 	date = Column(String(25))
 	exception_type = Column(Integer)
@@ -95,7 +95,7 @@ class mta_calendar_date(Base):
 
 class mta_shape(Base):
 	__tablename__ = "mta_shapes"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	shape_id = Column(String(20))
 	shape_pt_lat = Column(Float)
 	shape_pt_lon = Column(Float)
@@ -105,7 +105,7 @@ class mta_shape(Base):
 
 class mta_transfer(Base):
 	__tablename__ = "mta_transfers"
-	x_id = Column(Integer, primary_key=True, nullable=False)
+	id = Column(Integer, primary_key=True, nullable=False)
 	from_stop_id = Column(String(5))
 	to_stop_id = Column(String(5))
 	transfer_type = Column(Integer)
