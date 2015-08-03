@@ -26,11 +26,11 @@ create table mta_stops (
 
 create table mta_routes (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	route_id varchar(5),
-	agency_id varchar(5),
+	route_id varchar(255),
+	agency_id varchar(255),
 	route_short_name varchar(255),
 	route_long_name varchar(255),
-	route_desc varchar(255),
+	route_desc TEXT,
 	route_type varchar(255),
 	route_url varchar(255),
 	route_color varchar(255),
@@ -52,9 +52,9 @@ create table mta_trips (
 
 create table mta_stop_times (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	trip_id varchar(5),
-	arrival_time varchar(10),
-	departure_time varchar(10),
+	trip_id varchar(255),
+	arrival_time Time,
+	departure_time Time,
 	stop_id varchar(255),
 	stop_sequence varchar(255),
 	stop_headsign varchar(255),
