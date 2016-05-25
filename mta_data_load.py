@@ -122,7 +122,7 @@ try:
 	for i in trips_list:
 		record = mta_trip()
 		record.route_id=i[0]
-		record.agency_id=i[1]
+		record.service_id=i[1]
 		record.trip_id=i[2]
 		record.trip_headsign=i[3]
 		record.direction_id=i[4]
@@ -194,16 +194,16 @@ try:
 		record = mta_shape()
 		record.shape_id=i[0]
 		record.shape_pt_lat=i[1]
-		record.shape_pt_long=i[2]
-		record.shape_dist_traveled=i[3]
+		record.shape_pt_lon=i[2]
+		record.shape_pt_sequence=i[3]
 		s.add(record) #Add all the records
 		s.commit() #Attempt to commit all the records
 except exc.SQLAlchemyError:
-	print "calendar dates import exception rollback called "
+	print "shapes import exception rollback called "
 	print exc.SQLAlchemyError.message
 	s.rollback() #Rollback the changes on error
 finally:
-	print "calendar dates finish imported"
+	print "shapes finish imported"
 
 #begin of mta shap date import
 print "begin transfers import"
@@ -219,8 +219,8 @@ try:
 		s.add(record) #Add all the records
 		s.commit() #Attempt to commit all the records
 except exc.SQLAlchemyError:
-	print "calendar dates import exception rollback called "
+	print "transfers import exception rollback called "
 	print exc.SQLAlchemyError.message
 	s.rollback() #Rollback the changes on error
 finally:
-	print "calendar dates finish imported"
+	print "transfers finish imported"
